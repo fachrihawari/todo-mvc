@@ -14,10 +14,10 @@ Built with
 
 Features:
 - [x] Add todo
-- [] Remove todo
+- [ ] Remove todo
 - [x] Mark todo as done
 - [x] Mark todo as undone
-- [] Edit todo
-- [] Filter todos
-- [] Clear completed todos
-- [] Persist todos in device storage
+- [ ] Edit todo
+- [ ] Filter todos
+- [ ] Clear completed todos
+- [ ] Persist todos in device storage
