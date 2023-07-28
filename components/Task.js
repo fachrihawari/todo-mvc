@@ -1,9 +1,17 @@
 import Icon from '@expo/vector-icons/Feather';
 import { useContext } from 'react';
 import { Pressable, StyleSheet } from 'react-native';
-import Animated, { FadeInUp, FlipInEasyY, interpolateColor, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
+import Animated, {
+  FadeInUp,
+  FlipInEasyY,
+  FadeIn,
+  FadeOut,
+  interpolateColor,
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming
+} from 'react-native-reanimated';
 
-import { FadeIn, FadeOut } from 'react-native-reanimated';
 import { TasksContext } from '../context';
 import colors from '../styles/colors';
 
