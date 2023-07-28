@@ -1,8 +1,9 @@
 import Icon from '@expo/vector-icons/Feather';
 import { useContext } from 'react';
 import { Pressable, StyleSheet } from 'react-native';
-import Animated, { FadeInUp, useAnimatedStyle, interpolateColor, useSharedValue, withTiming } from 'react-native-reanimated';
+import Animated, { FadeInUp, FlipInEasyY, interpolateColor, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 
+import { FadeIn, FadeOut } from 'react-native-reanimated';
 import { TasksContext } from '../context';
 import colors from '../styles/colors';
 
@@ -11,6 +12,8 @@ const AnimatedIcon = Animated.createAnimatedComponent(Icon)
 export default function Task({ task }) {
   const { toggleCompleteTask } = useContext(TasksContext)
   const completed = useSharedValue(task.completed ? 1 : 0)
+
+  const [color, icon] = task.completed ? [colors.green, 'check-circle'] : [colors.primary, 'circle']
 
   const taskNameStyle = useAnimatedStyle(() => {
     return {
@@ -31,11 +34,14 @@ export default function Task({ task }) {
   return (
     <Animated.View style={styles.task} entering={FadeInUp.duration(500)}>
       <Pressable onPress={handleToggle}>
-        {
-          task.completed ?
-            <AnimatedIcon color={colors.green} name={'check-circle'} style={styles.taskIcon} /> :
-            <AnimatedIcon color={colors.primary} name={'circle'} style={styles.taskIcon} />
-        }
+        <AnimatedIcon
+          key={task.id + task.completed} // key is necessary, so react know its a different component
+          color={color}
+          name={icon}
+          exiting={task.completed ? FadeOut : undefined}
+          entering={task.completed ? FlipInEasyY : FadeIn}
+          style={styles.taskIcon}
+        />
       </Pressable>
       <Animated.Text style={[styles.taskName, taskNameStyle]}>{task.name}</Animated.Text>
     </Animated.View>

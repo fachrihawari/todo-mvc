@@ -1,7 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
-
 import Header from './components/Header';
 import NewTask from './components/NewTask';
 import TaskList from './components/TaskList';
@@ -12,8 +11,8 @@ export default function App() {
   return (
     <SafeAreaProvider>
       <SafeAreaView style={styles.container}>
+        <Header />
         <TasksProvider>
-          <Header />
           <NewTask />
           <TaskList />
         </TasksProvider>
